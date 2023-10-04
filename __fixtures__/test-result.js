@@ -7,4 +7,4 @@ const jsonCompareResult1 = `{
 + verbose: true
 }`;
 
-export { jsonCompareResult1 };
+export default jsonCompareResult1;

@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
 import genDiff from '../src/index.js';
-import { jsonCompareResult1 } from '../__fixtures__/test-result.js';
+import jsonCompareResult1 from '../__fixtures__/test-result.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
