@@ -3,14 +3,9 @@ import _ from 'lodash';
 const getDiff = (obj1, obj2) => {
   const keysObj1 = Object.keys(obj1);
   const keysObj2 = Object.keys(obj2);
-  const sortedKeys = _.sortBy(_.union(keysObj1, keysObj2));
+  const unionKeys = _.union(keysObj1, keysObj2);
+  const sortedKeys = _.sortBy(unionKeys);
 
-  /*
-added (+) — ключ отсутствовал в первом объекте, но был добавлен во второй
-deleted (-)— ключ был в первом объекте, но отсутствует во втором
-changed (-)(+)— ключ присутствовал и в первом и во втором объектах, но значения отличаются
-unchanged — ключ присутствовал и в первом и во втором объектах с одинаковыми значениями
-*/
   const difference = sortedKeys.map((key) => {
     if (!Object.hasOwn(obj1, key)) {
       return { key, value: obj2[key], status: 'added' };
@@ -40,6 +35,7 @@ unchanged — ключ присутствовал и в первом и во в�
   });
   result = `{${result}\n}`;
   console.log(result);
+  return result;
 };
 
 export default getDiff;
