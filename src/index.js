@@ -14,8 +14,9 @@ const genDiff = (filePath1, filePath2) => {
   const fileContent2 = readContent(filePath2);
   const parseFileContent1 = fileParser(fileContent1, fileType1);
   const parseFileContent2 = fileParser(fileContent2, fileType2);
-  const diff = getDiff(parseFileContent1, parseFileContent2);
-  return diff;
+  const treeOfDiff = getDiff(parseFileContent1, parseFileContent2);
+
+  return treeOfDiff;
 };
 
 export default genDiff;
