@@ -1,3 +1,5 @@
+//import yaml from 'js-yaml';
+
 const fileParser = (fileData, extention) => {
   switch (extention) {
     case 'json':
