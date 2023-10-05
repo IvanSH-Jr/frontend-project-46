@@ -37,5 +37,5 @@ const getDiff = (obj1, obj2) => {
   console.log(result);
   return result;
 };
-
+console.log('test')
 export default getDiff;
