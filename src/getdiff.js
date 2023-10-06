@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
 const getDiff = (obj1, obj2) => {
+  if (_.isEmpty(obj1) && _.isEmpty(obj2)) return '{}';
+
   const keysObj1 = Object.keys(obj1);
   const keysObj2 = Object.keys(obj2);
   const unionKeys = _.union(keysObj1, keysObj2);
@@ -18,7 +20,7 @@ const getDiff = (obj1, obj2) => {
     }
     return { key, value: obj1[key], status: 'unchanged' };
   });
-  console.log(difference);
+
   let result = '';
   difference.forEach(({
     key, value, newValue, status,
@@ -35,7 +37,8 @@ const getDiff = (obj1, obj2) => {
   });
   result = `{${result}\n}`;
   console.log(result);
+
   return result;
 };
-console.log('test')
+
 export default getDiff;
