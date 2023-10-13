@@ -21,24 +21,22 @@ const getDiff = (obj1, obj2) => {
     return { key, value: obj1[key], status: 'unchanged' };
   });
 
-  let result = '';
-  difference.forEach(({
+  const test = difference.map(({
     key, value, newValue, status,
   }) => {
+    const added = '+';
+    const deleted = '-';
     if (status === 'added') {
-      result = `${result}\n+ ${key}: ${value}`;
-    } else if (status === 'deleted') {
-      result = `${result}\n- ${key}: ${value}`;
-    } else if (status === 'changed') {
-      result = `${result}\n- ${key}: ${value}\n+ ${key}: ${newValue}`;
-    } else {
-      result = `${result}\n  ${key}: ${value}`;
+      return ` ${added} ${key}: ${value}`;
+    } if (status === 'deleted') {
+      return ` ${deleted} ${key}: ${value}`;
+    } if (status === 'changed') {
+      return ` ${deleted} ${key}: ${value}\n ${added} ${key}: ${newValue}`;
     }
+    return `   ${key}: ${value}`;
   });
-  result = `{${result}\n}`;
-  console.log(result);
 
-  return result;
+  return ['{', ...test, '}'].join('\n');
 };
 
 export default getDiff;

@@ -7,7 +7,7 @@ import getDiff from './getdiff.js';
 const readContent = (file) => readFileSync(file);
 const getFileExt = (file) => extname(file).slice(1);
 
-const genDiff = (filePath1, filePath2) => {
+const genDiff = (filePath1, filePath2, format) => {
   const fileType1 = getFileExt(filePath1);
   const fileType2 = getFileExt(filePath2);
   const fileContent1 = readContent(filePath1);
