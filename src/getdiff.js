@@ -15,21 +15,26 @@ const getDiff = (obj1, obj2, format) => {
       }
       if (!Object.hasOwn(currentObj1, key)) {
         return { key, newValue: currentObj2[key], status: 'added' };
-      } if (!Object.hasOwn(currentObj2, key)) {
+      } 
+      if (!Object.hasOwn(currentObj2, key)) {
         return { key, oldValue: currentObj1[key], status: 'deleted' };
-      }   if (currentObj1[key] !== currentObj2[key]) {
+      } 
+      if (
+        Object.hasOwn(currentObj1, key) && Object.hasOwn(currentObj2, key) && _.isEqual(currentObj1[key], currentObj2[key])
+        ) {
         return {
-          key, oldValue: currentObj1[key], newValue: currentObj2[key], status: 'changed',
+          key, oldValue: currentObj1[key], status: 'unchanged',
         };
       }
-      return { key, oldValue: currentObj1[key], status: 'unchanged' };
+
+      return { key, oldValue: currentObj1[key], newValue: currentObj2[key], status: 'changed' };
     });
     //console.log(statusesOfValues)
     return statusesOfValues;
   };
 
   const getStatuses = iter(obj1, obj2);
-  const result = formatter(getStatuses, '..');
+  const result = formatter(getStatuses, '.');
   console.log(result)
 };
 
