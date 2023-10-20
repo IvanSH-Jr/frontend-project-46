@@ -20,7 +20,7 @@ const getDiff = (obj1, obj2, format) => {
         return { key, oldValue: currentObj1[key], status: 'deleted' };
       } 
       if (
-        Object.hasOwn(currentObj1, key) && Object.hasOwn(currentObj2, key) && _.isEqual(currentObj1[key], currentObj2[key])
+        currentObj1[key] === currentObj2[key]
         ) {
         return {
           key, oldValue: currentObj1[key], status: 'unchanged',
@@ -29,7 +29,6 @@ const getDiff = (obj1, obj2, format) => {
 
       return { key, oldValue: currentObj1[key], newValue: currentObj2[key], status: 'changed' };
     });
-    //console.log(statusesOfValues)
     return statusesOfValues;
   };
 

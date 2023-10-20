@@ -1,9 +1,9 @@
 import stringify from '../utilites/stringify.js';
 import indentCount from '../utilites/indentCount.js';
 
-const stylish = (value, replacer = ' ', spacesCount = 4) => {
+const stylish = (value) => {
     const iter = (currentValue, depth) => {
-        const [ currentIndent, bracketIndent ] = indentCount(depth, replacer, spacesCount);
+        const [ currentIndent, bracketIndent ] = indentCount(depth);
         const lines = currentValue
             .map(({
                 key, oldValue, newValue, status, children,

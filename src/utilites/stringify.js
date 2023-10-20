@@ -3,7 +3,7 @@ import indentCount from './indentCount.js';
 const stringify = (value, depth) => {
   const iter = (node, depth) => {
     if (!(node instanceof Object)) return String(node);
-    const [ currentIndent, bracketIndent ] = indentCount(depth, '.', 4);
+    const [ currentIndent, bracketIndent ] = indentCount(depth + 1);
     const lines = Object
               .entries(node)
               .map(([key, value]) => {
@@ -13,7 +13,7 @@ const stringify = (value, depth) => {
           '{',
           ...lines,
           `${bracketIndent}}`,
-          ].join('\n');;
+          ].join('\n');
   };
 
   return iter(value, depth);
