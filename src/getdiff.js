@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import formatter from './formater/stylish.js';
+import formatter from './formatter/format.js';
 
 const getDiff = (obj1, obj2, format) => {
   const iter = (currentObj1, currentObj2) => {
@@ -34,9 +34,8 @@ const getDiff = (obj1, obj2, format) => {
     });
     return statusesOfValues;
   };
-  console.log(format);
   const getStatuses = iter(obj1, obj2);
-  const result = getStatuses !== '{}' ? formatter(getStatuses, '.') : '{}';
+  const result = getStatuses !== '{}' ? formatter(getStatuses, format) : '{}';
   return result;
 };
 
