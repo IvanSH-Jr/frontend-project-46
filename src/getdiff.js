@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import formatter from './formatter/format.js';
+import formatter from './formatters/index.js';
 
 const getDiff = (obj1, obj2, format) => {
   const iter = (currentObj1, currentObj2) => {
