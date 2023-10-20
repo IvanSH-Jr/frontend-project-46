@@ -1,19 +1,17 @@
 import indentCount from './indentCount.js';
 
 const stringify = (value, depth) => {
-  const iter = (node, depth) => {
+  const iter = (node, currentDepth) => {
     if (!(node instanceof Object)) return String(node);
-    const [ currentIndent, bracketIndent ] = indentCount(depth + 1);
+    const [currentIndent, bracketIndent] = indentCount(currentDepth + 1);
     const lines = Object
-              .entries(node)
-              .map(([key, value]) => {
-                  return `${currentIndent} ${key}: ${iter(value, depth + 1)}`;
-              });
+      .entries(node)
+      .map(([key, currentValue]) => `${currentIndent} ${key}: ${iter(currentValue, currentDepth + 1)}`);
     return [
-          '{',
-          ...lines,
-          `${bracketIndent}}`,
-          ].join('\n');
+      '{',
+      ...lines,
+      `${bracketIndent}}`,
+    ].join('\n');
   };
 
   return iter(value, depth);
