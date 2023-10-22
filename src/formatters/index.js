@@ -2,14 +2,13 @@ import stylish from './stylish.js';
 import plain from './plain.js';
 
 const formatter = (val, format) => {
-  console.log(format)
-  switch(format) {
+  switch (format) {
     case 'stylish':
-        return stylish(val);
+      return stylish(val);
     case 'plain':
-        return plain(val);
+      return plain(val);
     default:
-        throw new Error(`This format is unknown - ${format}`);
+      throw new Error(`This format is unknown - ${format}`);
   }
 };
 
