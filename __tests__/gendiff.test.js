@@ -10,6 +10,7 @@ import {
   yamlEmptyResult2,
   yamlCompareResult3,
   nestedResult,
+  plainResult,
 } from '../__fixtures__/test-result.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -47,6 +48,7 @@ test('compare two json files', () => {
   expect(genDiff(jsonFile3, jsonFile3)).toEqual(jsonEmptyResult2);
   expect(genDiff(jsonFile3, jsonFile2)).toEqual(jsonCompareResult3);
   expect(genDiff(jsonFile4, jsonFile5)).toEqual(nestedResult);
+  expect(genDiff(jsonFile4, jsonFile5, 'plain')).toEqual(plainResult);
 });
 
 test('compare two yaml files', () => {
@@ -54,4 +56,5 @@ test('compare two yaml files', () => {
   expect(genDiff(yamlFile3, yamlFile3)).toEqual(yamlEmptyResult2);
   expect(genDiff(yamlFile1, yamlFile3)).toEqual(yamlCompareResult3);
   expect(genDiff(yamlFile4, yamlFile5)).toEqual(nestedResult);
+  expect(genDiff(yamlFile4, yamlFile5, 'plain')).toEqual(plainResult);
 });
