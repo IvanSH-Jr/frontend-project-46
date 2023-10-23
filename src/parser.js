@@ -11,7 +11,6 @@ const getFileExt = (file) => {
 
 const fileParser = (fileName) => {
   const pathToFile = createPath(fileName);
-  console.log(pathToFile);
   const fileExt = getFileExt(pathToFile);
 
   if (fileExt === '.json') return JSON.parse(readContent(pathToFile));
