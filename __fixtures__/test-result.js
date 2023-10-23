@@ -93,6 +93,122 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
+const jsonResult = `[
+ {
+  "key": "common",
+  "status": "nested",
+  "children": [
+   {
+    "key": "follow",
+    "newValue": false,
+    "status": "added"
+   },
+   {
+    "key": "setting1",
+    "oldValue": "Value 1",
+    "status": "unchanged"
+   },
+   {
+    "key": "setting2",
+    "oldValue": 200,
+    "status": "deleted"
+   },
+   {
+    "key": "setting3",
+    "oldValue": true,
+    "newValue": null,
+    "status": "changed"
+   },
+   {
+    "key": "setting4",
+    "newValue": "blah blah",
+    "status": "added"
+   },
+   {
+    "key": "setting5",
+    "newValue": {
+     "key5": "value5"
+    },
+    "status": "added"
+   },
+   {
+    "key": "setting6",
+    "status": "nested",
+    "children": [
+     {
+      "key": "doge",
+      "status": "nested",
+      "children": [
+       {
+        "key": "wow",
+        "oldValue": "",
+        "newValue": "so much",
+        "status": "changed"
+       }
+      ]
+     },
+     {
+      "key": "key",
+      "oldValue": "value",
+      "status": "unchanged"
+     },
+     {
+      "key": "ops",
+      "newValue": "vops",
+      "status": "added"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "key": "group1",
+  "status": "nested",
+  "children": [
+   {
+    "key": "baz",
+    "oldValue": "bas",
+    "newValue": "bars",
+    "status": "changed"
+   },
+   {
+    "key": "foo",
+    "oldValue": "bar",
+    "status": "unchanged"
+   },
+   {
+    "key": "nest",
+    "oldValue": {
+     "key": "value"
+    },
+    "newValue": "str",
+    "status": "changed"
+   }
+  ]
+ },
+ {
+  "key": "group2",
+  "oldValue": {
+   "abc": 12345,
+   "deep": {
+    "id": 45
+   }
+  },
+  "status": "deleted"
+ },
+ {
+  "key": "group3",
+  "newValue": {
+   "deep": {
+    "id": {
+     "number": 45
+    }
+   },
+   "fee": 100500
+  },
+  "status": "added"
+ }
+]`;
 export {
   jsonCompareResult1,
   jsonEmptyResult2,
@@ -102,4 +218,5 @@ export {
   yamlCompareResult3,
   nestedResult,
   plainResult,
+  jsonResult,
 };
