@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import formatter from './formatters/index.js';
 
-const getDiff = (obj1, obj2, format) => {
+export default (obj1, obj2) => {
   const iter = (currentObj1, currentObj2) => {
     if (_.isEmpty(currentObj1) && _.isEmpty(currentObj2)) return '{}';
 
@@ -34,9 +33,6 @@ const getDiff = (obj1, obj2, format) => {
     });
     return statusesOfValues;
   };
-  const getStatuses = iter(obj1, obj2);
-  const result = getStatuses !== '{}' ? formatter(getStatuses, format) : '{}';
-  return result;
-};
 
-export default getDiff;
+  return iter(obj1, obj2);
+};
