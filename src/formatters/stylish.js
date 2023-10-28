@@ -1,5 +1,26 @@
-import stringify from '../utilites/stringify.js';
-import indentCount from '../utilites/indentCount.js';
+const indentCount = (depth = 1, replacer = '.', spacesCount = 4) => {
+  const indentSize = (depth * spacesCount);
+  const currentIndent = replacer.repeat(indentSize);
+  const bracketIndent = replacer.repeat(indentSize - spacesCount);
+  return [currentIndent, bracketIndent];
+};
+
+const stringify = (value, depth) => {
+  const iter = (node, currentDepth) => {
+    if (!(node instanceof Object)) return String(node);
+    const [currentIndent, bracketIndent] = indentCount(currentDepth + 1);
+    const lines = Object
+      .entries(node)
+      .map(([key, currentValue]) => `${currentIndent} ${key}: ${iter(currentValue, currentDepth + 1)}`);
+    return [
+      '{',
+      ...lines,
+      `${bracketIndent}}`,
+    ].join('\n');
+  };
+
+  return iter(value, depth);
+};
 
 const stylish = (value) => {
   const iter = (currentValue, depth) => {
