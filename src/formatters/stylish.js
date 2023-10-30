@@ -1,7 +1,8 @@
-const indentCount = (depth = 1, replacer = '.', spacesCount = 4) => {
-  const indentSize = (depth * spacesCount);
+const indentCount = (depth = 1, replacer = ' ', spacesCount = 4) => {
+  const indentSize = (depth * spacesCount) - 2;
+  //(depth * spacesCount)
   const currentIndent = replacer.repeat(indentSize);
-  const bracketIndent = replacer.repeat(indentSize - spacesCount);
+  const bracketIndent = replacer.repeat(indentSize - spacesCount + 2);
   return [currentIndent, bracketIndent];
 };
 
@@ -33,15 +34,15 @@ const stylish = (value) => {
           return `${currentIndent} ${key}: ${iter(children, depth + 1)}`;
         }
         if (status === 'added') {
-          return `${currentIndent}+${key}: ${stringify(newValue, depth)}`;
+          return `${currentIndent}+ ${key}: ${stringify(newValue, depth)}`;
         }
         if (status === 'deleted') {
-          return `${currentIndent}-${key}: ${stringify(oldValue, depth)}`;
+          return `${currentIndent}- ${key}: ${stringify(oldValue, depth)}`;
         }
         if (status === 'changed') {
-          return `${currentIndent}-${key}: ${stringify(oldValue, depth)}\n${currentIndent}+${key}: ${stringify(newValue, depth)}`;
+          return `${currentIndent}- ${key}: ${stringify(oldValue, depth)}\n${currentIndent}+ ${key}: ${stringify(newValue, depth)}`;
         }
-        return `${currentIndent} ${key}: ${stringify(oldValue, depth)}`;
+        return `${currentIndent}  ${key}: ${stringify(oldValue, depth)}`;
       });
 
     return [
