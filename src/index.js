@@ -1,18 +1,16 @@
-import fileParser from './parser.js';
-import { readFile, getFileExt } from './fileReader.js';
-import compareTrees from './comparator.js';
-import formatter from './formatters/index.js';
+import { program } from 'commander';
+import genDiff from './gendiff.js';
 
-const genDiff = (filePath1, filePath2, format = 'stylish') => {
-  const fileContent1 = readFile(filePath1);
-  const fileContent2 = readFile(filePath2);
-  const fileExt1 = getFileExt(filePath1);
-  const fileExt2 = getFileExt(filePath2);
-  const parsedFile1 = fileParser(fileContent1, fileExt1);
-  const parsedFile2 = fileParser(fileContent2, fileExt2);
-  const treeOfDiff = compareTrees(parsedFile1, parsedFile2);
-  const result = formatter(treeOfDiff, format);
-  return result;
+export default () => {
+  program
+    .name('gendiff')
+    .description('Compares two configuration files and shows a difference.')
+    .version('0.0.1', '-v, --version', 'output the version number')
+    .helpOption('-h, --help', 'output usage information')
+    .option('-f, --format <type>', 'output format', 'stylish')
+    .arguments('<filepath1> <filepath2>', 'path to the files')
+    .action(
+      (filepath1, filepath2) => console.log(genDiff(filepath1, filepath2, program.opts().format)),
+    );
+  program.parse(); 
 };
-
-export default genDiff;
