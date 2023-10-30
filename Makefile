@@ -14,4 +14,4 @@ test-coverage:
 		npx jest --coverage
 
 gendiff:
-		node bin/gendiff.js -h
+		bin/gendiff.js
