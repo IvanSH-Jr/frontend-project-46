@@ -1,8 +1,7 @@
 const indentCount = (depth = 1, replacer = ' ', spacesCount = 4) => {
-  const indentSize = (depth * spacesCount) - 2;
-  //(depth * spacesCount)
-  const currentIndent = replacer.repeat(indentSize);
-  const bracketIndent = replacer.repeat(indentSize - spacesCount + 2);
+  const indentSize = depth * spacesCount;
+  const currentIndent = replacer.repeat(indentSize - 2);
+  const bracketIndent = replacer.repeat(indentSize - spacesCount);
   return [currentIndent, bracketIndent];
 };
 
@@ -12,7 +11,7 @@ const stringify = (value, depth) => {
     const [currentIndent, bracketIndent] = indentCount(currentDepth + 1);
     const lines = Object
       .entries(node)
-      .map(([key, currentValue]) => `${currentIndent} ${key}: ${iter(currentValue, currentDepth + 1)}`);
+      .map(([key, currentValue]) => `${currentIndent}  ${key}: ${iter(currentValue, currentDepth + 1)}`);
     return [
       '{',
       ...lines,
@@ -31,7 +30,7 @@ const stylish = (value) => {
         key, oldValue, newValue, status, children,
       }) => {
         if (status === 'nested') {
-          return `${currentIndent} ${key}: ${iter(children, depth + 1)}`;
+          return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;
         }
         if (status === 'added') {
           return `${currentIndent}+ ${key}: ${stringify(newValue, depth)}`;

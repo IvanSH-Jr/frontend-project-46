@@ -19,6 +19,6 @@ test.each([
   ['file1.yml', 'file2.yml', 'plain', 'result/result2.txt'],
   ['file1.yml', 'file2.yml', 'json', 'result/result3.txt'],
 ])('Compare %p and %p, result in %s format', (file1, file2, format, result) => {
-  expect(genDiff(getFixturePath(file1), getFixturePath(file2), format).replace(/\s/g, ''))
-    .toEqual(readFile(getFixturePath(result)).replace(/\s/g, ''));
+  expect(genDiff(getFixturePath(file1), getFixturePath(file2), format))
+    .toEqual(readFile(getFixturePath(result)));
 });
