@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "program that determines the difference between two data structures",
   "main": "index.js",
+  "bin": { "gendiff": "./bin/gendiff.js" },
   "type": "module",
   "scripts": {
-    "test": "npx jest",
-    "yml": "node .//bin//gendiff.js .//__fixtures__//file3.yml .//__fixtures__//file4.yml",
-    "json": "node .//bin//gendiff.js .//__fixtures__//file1.json .//__fixtures__//file2.json",
-    "mock": "node .//bin//gendiff.js .//__fixtures__//mockfile1.css .//__fixtures__//mockfile2.html"
+    "test": "npx jest"
   },
   "repository": {
     "type": "git",
@@ -16,9 +14,6 @@
   },
   "author": "Ivan Shadrin",
   "license": "ISC",
-  "bin": {
-    "gendiff": "bin/gendiff.js"
-  },
   "bugs": {
     "url": "https://github.com/IvanSH-Jr/frontend-project-46/issues"
   },
