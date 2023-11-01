@@ -16,7 +16,8 @@ const getParsedData = (filePath) => {
 };
 
 const genDiff = (filePath1, filePath2, format = 'stylish') => {
-  const [parsedFile1, parsedFile2] = [getParsedData(filePath1), getParsedData(filePath2)];
+  const parsedFile1 = getParsedData(filePath1);
+  const parsedFile2 = getParsedData(filePath2);
   const treeOfDiff = compareTrees(parsedFile1, parsedFile2);
   const result = formatter(treeOfDiff, format);
   return result;
