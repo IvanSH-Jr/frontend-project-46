@@ -4,7 +4,7 @@ import fileParser from './parser.js';
 import compareTrees from './comparator.js';
 import formatter from './formatters/index.js';
 
-const getFileExt = (filePath) => path.extname(filePath).slice(0);
+const getFileExt = (filePath) => path.extname(filePath).slice(1);
 const makePath = (filePath) => path.resolve(process.cwd(), filePath);
 const readFile = (filePath) => fs.readFileSync(makePath(filePath), 'utf8');
 
